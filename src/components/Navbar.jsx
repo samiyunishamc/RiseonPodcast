@@ -72,6 +72,9 @@ const Navbar = () => {
               {link.label}
             </button>
           ))}
+          <a href="/admin" className="btn-outline !py-2 !px-4 text-sm no-underline">
+            Admin Login
+          </a>
         </nav>
 
         <button
@@ -104,6 +107,13 @@ const Navbar = () => {
                   {link.label}
                 </button>
               ))}
+              <a
+                href="/admin"
+                className="btn-outline text-center no-underline mt-1"
+                onClick={() => setMenuOpen(false)}
+              >
+                Admin Login
+              </a>
             </div>
           </motion.nav>
         )}

@@ -5,7 +5,7 @@ const Hero = () => {
   const scrollTo = (id) => document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
 
   return (
-    <section id="home" className="section-space pt-32 sm:pt-36 soft-grid">
+    <section id="home" className="section-space pt-10 sm:pt-14 soft-grid">
       <div className="site-container">
         <div className="grid lg:grid-cols-[1.1fr_0.9fr] gap-10 items-center">
           <motion.div

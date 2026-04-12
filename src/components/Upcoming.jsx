@@ -116,6 +116,15 @@ const Upcoming = () => {
               </div>
             </motion.article>
           ))}
+
+          {regulars.length === 0 && (
+            <article className="panel p-6 md:col-span-2 text-center">
+              <h3 className="text-2xl mb-2">More guests coming soon</h3>
+              <p className="text-sm text-[#4b5563]">
+                Fresh speaker announcements will be published here after confirmation.
+              </p>
+            </article>
+          )}
         </div>
       </div>
     </section>

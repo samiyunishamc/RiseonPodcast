@@ -18,7 +18,7 @@ function App() {
   return (
     <div className="site-shell min-h-screen">
       <Navbar />
-      <main>
+      <main className="site-main">
         <Hero />
         <About />
         <Upcoming />

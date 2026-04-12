@@ -54,6 +54,14 @@ h6 {
   background: transparent;
 }
 
+.site-main {
+  padding-top: 74px;
+}
+
+.site-main section[id] {
+  scroll-margin-top: 90px;
+}
+
 .site-container {
   width: min(1140px, calc(100% - 2.5rem));
   margin-inline: auto;

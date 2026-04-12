@@ -44,6 +44,15 @@ const PodcastList = () => {
               </div>
             </motion.article>
           ))}
+
+          {pastPodcasts.length === 0 && (
+            <article className="panel p-6 sm:col-span-2 lg:col-span-3 text-center">
+              <h3 className="text-2xl mb-2">Episodes are being curated</h3>
+              <p className="text-sm text-[#4b5563]">
+                New podcast episodes will appear here as soon as they are published.
+              </p>
+            </article>
+          )}
         </div>
       </div>
     </section>

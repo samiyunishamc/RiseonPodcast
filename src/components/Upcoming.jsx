@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { upcomingPodcasts } from "../data/podcastData";
-import sundaramSpeaker from "../assets/sundaram ramaswamy speaker.jpg";
 
 const Upcoming = () => {
   const [saved, setSaved] = useState([]);
@@ -13,18 +12,18 @@ const Upcoming = () => {
   };
 
   return (
-    <section id="upcoming" className="section-space">
+    <section id="upcoming" className="section-space section-alt">
       <div className="site-container">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
-          className="text-center mb-12"
+          viewport={{ once: true, margin: "-60px" }}
+          className="section-header section-header--center"
         >
-          <span className="kicker mb-5">Upcoming Sessions</span>
-          <h2 className="section-title mb-4">Reserve your seat for the next conversations.</h2>
-          <p className="section-lead mx-auto">
-            Join live episodes focused on confidence, public speaking, and leadership growth.
+          <p className="section-eyebrow">Upcoming Sessions</p>
+          <h2 className="section-title">Reserve your seat for the next conversations.</h2>
+          <p className="section-lead">
+            Live episodes focused on confidence, public speaking, and leadership growth.
           </p>
         </motion.div>
 
@@ -32,60 +31,66 @@ const Upcoming = () => {
           <motion.article
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-80px" }}
-            className="panel p-4 sm:p-5 mb-5"
-            style={{
-              background:
-                "linear-gradient(130deg, rgba(255,255,255,1) 0%, rgba(248,243,255,1) 100%)",
-            }}
+            viewport={{ once: true, margin: "-60px" }}
+            className="card overflow-hidden mb-6"
           >
-            <div className="grid md:grid-cols-[260px_1fr] gap-5 items-stretch">
-              <div className="relative rounded-3xl overflow-hidden min-h-[280px]">
-                <img
-                  src={sundaramSpeaker}
-                  alt="Sundaram Ramaswamy"
-                  className="w-full h-full object-cover"
-                />
+            <div className="grid lg:grid-cols-[320px_1fr]">
+              <div className="relative min-h-[280px] lg:min-h-0">
+                <div
+                  className="avatar avatar--lg gradient-orange absolute inset-0 rounded-none"
+                  aria-hidden="true"
+                >
+                  {featured.speakerInitials}
+                </div>
                 <div
                   className="absolute inset-0"
                   style={{
-                    background:
-                      "linear-gradient(to top, rgba(14, 14, 20, 0.62), rgba(14, 14, 20, 0.05))",
+                    background: "linear-gradient(to top, rgba(12,10,29,0.75) 0%, transparent 55%)",
                   }}
                 />
-                <div className="absolute left-4 right-4 bottom-4">
-                  <p className="text-white text-[0.72rem] tracking-[0.16em] uppercase font-bold mb-1">
-                    Featured Guest
-                  </p>
-                  <p className="text-white text-lg font-extrabold leading-tight">
-                    {featured.speaker}
-                  </p>
+                <div className="absolute left-5 right-5 bottom-5">
+                  <span className="tag tag--warm mb-2">Featured Guest</span>
+                  <p className="text-white text-xl font-bold leading-tight">{featured.speaker}</p>
+                  <p className="text-white/60 text-sm mt-1">{featured.designation}</p>
                 </div>
               </div>
 
-              <div className="rounded-3xl bg-white/80 border border-[#e6dcfc] p-5 sm:p-6">
+              <div className="card-padded flex flex-col justify-center">
                 <div className="flex flex-wrap items-center gap-2 mb-4">
-                  <span className="tag-pill">Featured</span>
-                  <span className="tag-pill">{featured.date}</span>
+                  <span className="tag">Featured</span>
+                  <span className="tag tag--muted">{featured.date}</span>
+                  {featured.time && featured.time !== "To Be Announced" && (
+                    <span className="tag tag--muted">{featured.time}</span>
+                  )}
                 </div>
-                <h3 className="text-[1.9rem] leading-tight mb-3">{featured.topic}</h3>
-                <p className="font-semibold text-[#1e1e1e]">{featured.designation}</p>
-                <p className="text-sm text-[#6b7280] mb-4">
-                  {featured.company ? `${featured.company} · ` : ""}
+
+                <h3 className="text-3xl mb-3 leading-tight">{featured.topic}</h3>
+
+                <p className="text-sm font-semibold mb-1" style={{ color: "var(--ink-soft)" }}>
+                  {featured.company}
+                </p>
+                <p className="text-sm mb-4" style={{ color: "var(--muted)" }}>
                   {featured.location}
                 </p>
-                <p className="text-sm text-[#4b5563] leading-relaxed mb-5">
+
+                <p className="text-sm leading-relaxed mb-6" style={{ color: "var(--muted)" }}>
                   {featured.description}
                 </p>
-                <button className="btn-primary" onClick={() => saveSpot(featured.id)}>
-                  {saved.includes(featured.id) ? "Spot Saved" : "Save My Spot"}
-                </button>
+
+                <div>
+                  <button
+                    className="btn btn-primary"
+                    onClick={() => saveSpot(featured.id)}
+                  >
+                    {saved.includes(featured.id) ? "Spot Saved ✓" : "Save My Spot"}
+                  </button>
+                </div>
               </div>
             </div>
           </motion.article>
         )}
 
-        <div className="grid md:grid-cols-2 gap-4">
+        <div className="grid md:grid-cols-2 gap-5">
           {regulars.map((ep, index) => (
             <motion.article
               key={ep.id}
@@ -93,34 +98,42 @@ const Upcoming = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-60px" }}
               transition={{ delay: index * 0.08 }}
-              className="panel p-5"
+              className="card card-padded card--interactive"
             >
-              <div className="flex items-center gap-3 mb-3">
-                <div className="w-11 h-11 rounded-2xl grid place-items-center text-white font-bold"
-                  style={{ background: "linear-gradient(135deg,#8b5cf6,#6d3ce6)" }}>
-                  {ep.speakerInitials}
-                </div>
+              <div className="flex items-center gap-3 mb-4">
+                <div className="avatar avatar--sm gradient-indigo">{ep.speakerInitials}</div>
                 <div>
-                  <p className="font-semibold text-sm">{ep.speaker}</p>
-                  <p className="text-xs text-[#6b7280]">{ep.designation}</p>
+                  <p className="font-bold text-sm">{ep.speaker}</p>
+                  <p className="text-xs" style={{ color: "var(--muted)" }}>{ep.designation}</p>
                 </div>
               </div>
 
               <h3 className="text-2xl mb-2">{ep.topic}</h3>
-              <p className="text-sm text-[#4b5563] mb-3">{ep.description}</p>
-              <div className="flex items-center justify-between gap-3">
-                <span className="text-xs text-[#6b7280] font-semibold">{ep.date}</span>
-                <button className="btn-notify" onClick={() => saveSpot(ep.id)}>
-                  {saved.includes(ep.id) ? "Notified" : "Notify Me"}
+              <p className="text-sm leading-relaxed mb-4" style={{ color: "var(--muted)" }}>
+                {ep.description}
+              </p>
+
+              <div className="flex items-center justify-between gap-3 pt-4" style={{ borderTop: "1px solid var(--line)" }}>
+                <span className="text-xs font-bold uppercase tracking-wider" style={{ color: "var(--muted)" }}>
+                  {ep.date}
+                </span>
+                <button className="btn btn-secondary btn-sm" onClick={() => saveSpot(ep.id)}>
+                  {saved.includes(ep.id) ? "Notified ✓" : "Notify Me"}
                 </button>
               </div>
             </motion.article>
           ))}
 
           {regulars.length === 0 && (
-            <article className="panel p-6 md:col-span-2 text-center">
+            <article className="card card-padded md:col-span-2 empty-state">
+              <div className="empty-state-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <rect x="3" y="4" width="18" height="18" rx="2" />
+                  <path d="M16 2v4M8 2v4M3 10h18" strokeLinecap="round" />
+                </svg>
+              </div>
               <h3 className="text-2xl mb-2">More guests coming soon</h3>
-              <p className="text-sm text-[#4b5563]">
+              <p className="text-sm max-w-md mx-auto" style={{ color: "var(--muted)" }}>
                 Fresh speaker announcements will be published here after confirmation.
               </p>
             </article>

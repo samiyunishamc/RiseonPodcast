@@ -77,148 +77,180 @@ const CTA = () => {
 
       window.location.href = `mailto:riseonpodcast@gmail.com?subject=${subject}&body=${body}`;
 
-      setForm({
-        fullName: "",
-        email: "",
-        title: "",
-        date: "",
-        theme: "",
-        notes: "",
-      });
+      setForm({ fullName: "", email: "", title: "", date: "", theme: "", notes: "" });
       setPhotoFile(null);
       setProfileFile(null);
-      setStatus("Submitted successfully. Sent to Admin dashboard and email draft.");
+      setStatus("Submitted successfully. Sent to admin dashboard and email draft.");
     } catch (error) {
       setStatus(error.message || "Submission failed. Please try again.");
     }
   };
 
+  const requiredFields = [
+    "Title",
+    "Date",
+    "Theme",
+    "Photo",
+    "Profile Attachment",
+  ];
+
   return (
-    <section id="contact" className="section-space">
+    <section id="contact" className="section-space section-alt">
       <div className="site-container">
-        <motion.div
-          initial={{ opacity: 0, y: 22 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
-          className="panel p-8 sm:p-12"
-          style={{ background: "linear-gradient(145deg, #ffffff 0%, #f4eeff 100%)" }}
-        >
-          <span className="kicker mb-5">Willing To Podcast</span>
-          <h2 className="section-title mb-4">Share your story with RiseOnPodcast</h2>
-          <p className="section-lead mb-8">
-            Submit your podcast request form. Required: title, date, theme, photo, and profile attachment.
-          </p>
+        <div className="grid lg:grid-cols-[1fr_1.4fr] gap-10 lg:gap-16 items-start">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-60px" }}
+            className="lg:sticky lg:top-28"
+          >
+            <p className="section-eyebrow">Willing To Podcast</p>
+            <h2 className="section-title">Share your story with RiseOnPodcast</h2>
+            <p className="section-lead mb-8">
+              Have a story worth telling? Submit your podcast request and our team will review your application.
+            </p>
 
-          <form onSubmit={handleSubmit} className="grid sm:grid-cols-2 gap-4 text-left">
-            <label className="text-sm font-semibold text-[#2f2f2f]">
-              Full Name
-              <input
-                className="mt-1.5 w-full rounded-xl border border-[#ded3fb] bg-white px-3 py-2.5 outline-none"
-                type="text"
-                value={form.fullName}
-                onChange={(e) => setForm((prev) => ({ ...prev, fullName: e.target.value }))}
-                required
-              />
-            </label>
+            <ul className="space-y-3 mb-8">
+              {requiredFields.map((field) => (
+                <li key={field} className="flex items-center gap-2.5 text-sm" style={{ color: "var(--ink-soft)" }}>
+                  <span
+                    className="w-5 h-5 rounded-full grid place-items-center flex-shrink-0"
+                    style={{ background: "var(--accent-soft)", color: "var(--accent-dark)" }}
+                  >
+                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3">
+                      <path d="M20 6L9 17l-5-5" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                  </span>
+                  {field} required
+                </li>
+              ))}
+            </ul>
 
-            <label className="text-sm font-semibold text-[#2f2f2f]">
-              Email
-              <input
-                className="mt-1.5 w-full rounded-xl border border-[#ded3fb] bg-white px-3 py-2.5 outline-none"
-                type="email"
-                value={form.email}
-                onChange={(e) => setForm((prev) => ({ ...prev, email: e.target.value }))}
-                required
-              />
-            </label>
+            <a href="mailto:riseonpodcast@gmail.com" className="footer-link font-semibold">
+              riseonpodcast@gmail.com
+            </a>
+          </motion.div>
 
-            <label className="text-sm font-semibold text-[#2f2f2f]">
-              Title
-              <input
-                className="mt-1.5 w-full rounded-xl border border-[#ded3fb] bg-white px-3 py-2.5 outline-none"
-                type="text"
-                value={form.title}
-                onChange={(e) => setForm((prev) => ({ ...prev, title: e.target.value }))}
-                required
-              />
-            </label>
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ delay: 0.1 }}
+            className="card card-padded"
+          >
+            <form onSubmit={handleSubmit} className="grid sm:grid-cols-2 gap-5">
+              <div>
+                <label className="form-label" htmlFor="fullName">Full Name</label>
+                <input
+                  id="fullName"
+                  className="form-input"
+                  type="text"
+                  value={form.fullName}
+                  onChange={(e) => setForm((prev) => ({ ...prev, fullName: e.target.value }))}
+                  required
+                />
+              </div>
 
-            <label className="text-sm font-semibold text-[#2f2f2f]">
-              Date
-              <input
-                className="mt-1.5 w-full rounded-xl border border-[#ded3fb] bg-white px-3 py-2.5 outline-none"
-                type="date"
-                value={form.date}
-                onChange={(e) => setForm((prev) => ({ ...prev, date: e.target.value }))}
-                required
-              />
-            </label>
+              <div>
+                <label className="form-label" htmlFor="email">Email</label>
+                <input
+                  id="email"
+                  className="form-input"
+                  type="email"
+                  value={form.email}
+                  onChange={(e) => setForm((prev) => ({ ...prev, email: e.target.value }))}
+                  required
+                />
+              </div>
 
-            <label className="text-sm font-semibold text-[#2f2f2f] sm:col-span-2">
-              Theme
-              <input
-                className="mt-1.5 w-full rounded-xl border border-[#ded3fb] bg-white px-3 py-2.5 outline-none"
-                type="text"
-                value={form.theme}
-                onChange={(e) => setForm((prev) => ({ ...prev, theme: e.target.value }))}
-                required
-              />
-            </label>
+              <div>
+                <label className="form-label" htmlFor="title">Episode Title</label>
+                <input
+                  id="title"
+                  className="form-input"
+                  type="text"
+                  value={form.title}
+                  onChange={(e) => setForm((prev) => ({ ...prev, title: e.target.value }))}
+                  required
+                />
+              </div>
 
-            <label className="text-sm font-semibold text-[#2f2f2f]">
-              Photo (Required)
-              <input
-                className="mt-1.5 w-full rounded-xl border border-[#ded3fb] bg-white px-3 py-2.5 outline-none"
-                type="file"
-                accept="image/*"
-                onChange={(e) => setPhotoFile(e.target.files?.[0] || null)}
-                required
-              />
-            </label>
+              <div>
+                <label className="form-label" htmlFor="date">Preferred Date</label>
+                <input
+                  id="date"
+                  className="form-input"
+                  type="date"
+                  value={form.date}
+                  onChange={(e) => setForm((prev) => ({ ...prev, date: e.target.value }))}
+                  required
+                />
+              </div>
 
-            <label className="text-sm font-semibold text-[#2f2f2f]">
-              Profile Attachment (Required)
-              <input
-                className="mt-1.5 w-full rounded-xl border border-[#ded3fb] bg-white px-3 py-2.5 outline-none"
-                type="file"
-                accept=".pdf,.doc,.docx,image/*"
-                onChange={(e) => setProfileFile(e.target.files?.[0] || null)}
-                required
-              />
-            </label>
+              <div className="sm:col-span-2">
+                <label className="form-label" htmlFor="theme">Theme</label>
+                <input
+                  id="theme"
+                  className="form-input"
+                  type="text"
+                  placeholder="e.g. Overcoming stage fear, leadership, storytelling"
+                  value={form.theme}
+                  onChange={(e) => setForm((prev) => ({ ...prev, theme: e.target.value }))}
+                  required
+                />
+              </div>
 
-            <label className="text-sm font-semibold text-[#2f2f2f] sm:col-span-2">
-              Additional Details
-              <textarea
-                className="mt-1.5 w-full rounded-xl border border-[#ded3fb] bg-white px-3 py-2.5 outline-none resize-y min-h-[6.5rem]"
-                value={form.notes}
-                onChange={(e) => setForm((prev) => ({ ...prev, notes: e.target.value }))}
-                placeholder="Optional context for the admin team."
-              />
-            </label>
+              <div>
+                <label className="form-label" htmlFor="photo">Photo</label>
+                <input
+                  id="photo"
+                  className="form-input"
+                  type="file"
+                  accept="image/*"
+                  onChange={(e) => setPhotoFile(e.target.files?.[0] || null)}
+                  required
+                />
+              </div>
 
-            <div className="sm:col-span-2 flex flex-col sm:flex-row sm:items-center gap-3">
-              <button type="submit" className="btn-glow">
-                Submit Form
-              </button>
-              {status && <p className="text-sm text-[#5f4aa4]">{status}</p>}
-            </div>
-          </form>
+              <div>
+                <label className="form-label" htmlFor="profile">Profile Attachment</label>
+                <input
+                  id="profile"
+                  className="form-input"
+                  type="file"
+                  accept=".pdf,.doc,.docx,image/*"
+                  onChange={(e) => setProfileFile(e.target.files?.[0] || null)}
+                  required
+                />
+              </div>
 
-          <div className="flex flex-wrap gap-2 mt-8">
-            {[
-              "Title Required",
-              "Date Required",
-              "Theme Required",
-              "Photo Required",
-              "Profile Attachment Required",
-            ].map((line) => (
-              <span className="tag-pill" key={line}>
-                {line}
-              </span>
-            ))}
-          </div>
-        </motion.div>
+              <div className="sm:col-span-2">
+                <label className="form-label" htmlFor="notes">Additional Details</label>
+                <textarea
+                  id="notes"
+                  className="form-input resize-y min-h-[7rem]"
+                  value={form.notes}
+                  onChange={(e) => setForm((prev) => ({ ...prev, notes: e.target.value }))}
+                  placeholder="Optional context for the admin team."
+                />
+              </div>
+
+              <div className="sm:col-span-2 flex flex-col sm:flex-row sm:items-center gap-3 pt-2">
+                <button type="submit" className="btn btn-dark">
+                  Submit Application
+                  <svg className="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                    <path d="M5 12h14M13 6l6 6-6 6" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </button>
+                {status && (
+                  <p className="text-sm font-medium" style={{ color: "var(--accent-dark)" }}>
+                    {status}
+                  </p>
+                )}
+              </div>
+            </form>
+          </motion.div>
+        </div>
       </div>
     </section>
   );

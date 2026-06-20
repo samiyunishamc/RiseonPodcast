@@ -28,9 +28,8 @@ export const upcomingPodcasts = [
     date: "Coming Soon",
     time: "To Be Announced",
     tag: "Special Session",
-    tagColor: "bg-orange-500/20 text-orange-300",
+    category: "Leadership",
     speakerInitials: "SR",
-    avatarGradient: "from-orange-500 to-red-600",
     description:
       "Join Sundaram Ramaswamy as he shares his journey of building confidence, leading teams, and overcoming fear in business and life.",
   },
@@ -44,4 +43,3 @@ export const stats = [
   { value: "Weekly", label: "Episode Cadence" },
   { value: "Open", label: "Speaker Form" },
 ];
-

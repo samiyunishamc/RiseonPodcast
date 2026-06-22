@@ -62,8 +62,8 @@ const Footer = () => {
   return (
     <footer className="footer">
       <div className="site-container">
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-12 pb-12">
-          <div className="lg:col-span-1">
+        <div className="footer-grid grid md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-12 pb-12">
+          <div className="footer-section lg:col-span-1">
             <div className="flex items-center gap-2.5 mb-4">
               <span className="avatar avatar--sm gradient-indigo">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="white" aria-hidden="true">
@@ -72,10 +72,10 @@ const Footer = () => {
               </span>
               <span className="font-extrabold text-lg text-white">RiseOnPodcast</span>
             </div>
-            <p className="text-sm leading-relaxed mb-6" style={{ color: "rgba(255,255,255,0.55)" }}>
+            <p className="text-sm leading-relaxed mb-6 footer-text" style={{ color: "rgba(255,255,255,0.55)" }}>
               Minimal conversations with maximum impact — built for introverts and aspiring speakers across India.
             </p>
-            <div className="flex gap-2">
+            <div className="flex gap-2 flex-wrap">
               {social.map((item) => (
                 <a
                   key={item.label}
@@ -91,7 +91,7 @@ const Footer = () => {
             </div>
           </div>
 
-          <div>
+          <div className="footer-section">
             <p className="footer-heading">Quick Links</p>
             <nav className="flex flex-col gap-3" aria-label="Footer quick links">
               {quickLinks.map((link) => (
@@ -100,7 +100,7 @@ const Footer = () => {
             </nav>
           </div>
 
-          <div>
+          <div className="footer-section">
             <p className="footer-heading">Episodes</p>
             <nav className="flex flex-col gap-3" aria-label="Footer episode links">
               {episodeLinks.map((link) =>
@@ -111,14 +111,14 @@ const Footer = () => {
                 )
               )}
             </nav>
-            <p className="footer-heading mt-8">Contact</p>
-            <a href="mailto:riseonpodcast@gmail.com" className="footer-link">riseonpodcast@gmail.com</a>
-            <p className="text-sm mt-2" style={{ color: "rgba(255,255,255,0.45)" }}>India · Remote Sessions</p>
+            <p className="footer-heading footer-heading--spaced">Contact</p>
+            <a href="mailto:riseonpodcast@gmail.com" className="footer-link footer-link--email">riseonpodcast@gmail.com</a>
+            <p className="text-sm mt-2 footer-text" style={{ color: "rgba(255,255,255,0.45)" }}>India · Remote Sessions</p>
           </div>
 
-          <div>
+          <div className="footer-section">
             <p className="footer-heading">Newsletter</p>
-            <p className="text-sm mb-4" style={{ color: "rgba(255,255,255,0.55)" }}>
+            <p className="text-sm mb-4 footer-text" style={{ color: "rgba(255,255,255,0.55)" }}>
               Get notified about new episodes and upcoming sessions.
             </p>
             {subscribed ? (
@@ -135,7 +135,7 @@ const Footer = () => {
                   required
                   aria-label="Email for newsletter"
                 />
-                <Button type="submit" size="sm">Join</Button>
+                <Button type="submit" size="sm" className="newsletter-submit">Join</Button>
               </form>
             )}
           </div>
